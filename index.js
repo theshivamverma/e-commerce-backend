@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-require("dotenv").config()
+require("dotenv").config();
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use("/user", userRouter);
 app.use("/wishlist", wishListRouter);
-app.use("/auth", authRouter)
+app.use("/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello world");
