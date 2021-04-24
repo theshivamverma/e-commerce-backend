@@ -27,7 +27,6 @@ router.route("/").get(async (req, res) => {
 router.route("/add/new").post(async (req, res) => {
   try {
     const NewWishList = new WishList();
-    NewWishList.products.push(wishListItem);
     const savedData = await NewWishList.save();
     res.status(200).json({ success: true, savedData });
   } catch (err) {
