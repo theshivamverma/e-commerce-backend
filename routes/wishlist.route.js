@@ -24,7 +24,7 @@ router.route("/").get(async (req, res) => {
   }
 });
 
-router.route("/add/new").post(async (req, res) => {
+router.route("/add/new").get(async (req, res) => {
   try {
     const NewWishList = new WishList();
     const savedData = await NewWishList.save();

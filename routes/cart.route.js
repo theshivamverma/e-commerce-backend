@@ -18,16 +18,9 @@ router.route("/").get(async (req, res) => {
   }
 });
 
-router.route("/add/new").post(async (req, res) => {
+router.route("/add/new").get(async (req, res) => {
   try {
-    // const { prodId } = req.body;
-    // const cartItem = {
-    //   product: prodId,
-    //   quantity: 1,
-    //   visible: true,
-    // };
     const NewCart = new Cart();
-    // NewCart.products.push(cartItem);
     const savedData = await NewCart.save();
     res.json({ success: true, savedData });
   } catch (err) {
