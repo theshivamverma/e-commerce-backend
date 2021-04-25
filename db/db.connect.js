@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
-require('dotenv').config()
-
-console.log(typeof(process.env.DB_URI))
+require("dotenv").config();
 
 async function initializeDBConnection() {
   try {
-    const res = await mongoose.connect(process.env.DB_URI.toString(), {
+    const res = await mongoose.connect(process.env.DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       autoIndex: true,
