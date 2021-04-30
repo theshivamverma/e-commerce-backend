@@ -9,7 +9,7 @@ const UserSchema = new Schema({
   username: {
     type: String,
     required: "username is mandatory",
-    unique: [true, "username should be unique"],
+    unique: true,
   },
   password: {
     type: String,
@@ -18,7 +18,7 @@ const UserSchema = new Schema({
   email: {
     type: String,
     required: "Email is required",
-    unique: [true, "email already exists"],
+    unique: true,
   },
   cart: { type: Schema.Types.ObjectId, ref: "Cart" },
   wishlist: { type: Schema.Types.ObjectId, ref: "WishList" },
