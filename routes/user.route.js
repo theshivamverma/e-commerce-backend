@@ -7,9 +7,7 @@ router
   .route("/")
   .get(async (req, res) => {
     try {
-      const userData = await User.find({})
-        .populate("cart")
-        .populate("wishlist");
+      const userData = await User.find({}).select('username email -_id')
       res.json({ success: true, userData });
     } catch (err) {
       res.json({ success: false, errorMessage: err.message });
