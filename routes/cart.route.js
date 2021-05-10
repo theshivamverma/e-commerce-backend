@@ -38,7 +38,7 @@ router.param("cartId", async (req, res, next, id) => {
       },
     });
     if (!cart) {
-      res.status(400).jsn({ success: false, message: "error retrieving cart" });
+      res.status(400).json({ success: false, message: "error retrieving cart" });
     }
     req.cart = cart;
     next();
@@ -72,7 +72,7 @@ router
              function (err, doc) {
                if (err) {
                  console.log(err);
-                 return res.send(err);
+                 return res.status(400).send(err);
                }
                res.json({ doc });
              }
@@ -108,7 +108,7 @@ router
             }},function(err, doc){
               if(err){
                 console.log(err)
-                return res.send(err)
+                return res.status(400).send(err)
               }
               res.json({ doc })
             })
@@ -140,7 +140,7 @@ router.route("/:cartId/update/dec").post(async (req, res) => {
           function (err, doc) {
             if (err) {
               console.log(err);
-              return res.send(err);
+              return res.status(400).send(err);
             }
             res.json({ doc });
           }
@@ -168,7 +168,7 @@ router.route("/:cartId/update/remove")
       }}, function(err, doc){
         if(err){
           console.log(err)
-          res.send(err)
+          res.status(400).send(err)
         }
         res.json({ success: true, doc })
       })
@@ -177,32 +177,3 @@ router.route("/:cartId/update/remove")
 })
 
 module.exports = router;
-
-
-  // .post(async (req, res) => {
-  //   try {
-  //     const { prodId } = req.body;
-  //     const { cart } = req;
-  //     cart.products.map((cartItem) => {
-  //       if (cartItem.product._id == prodId) {
-  //         const itemIndex = cart.products.indexOf(cartItem);
-  //         const updatedCartItem = {
-  //           product: cartItem.product,
-  //           quantity: cartItem.quantity + 1,
-  //         };
-  //         console.log(cart.products.pull({ _id: cartItem._id }));
-  //         cart.products.set(itemIndex, updatedCartItem);
-  //       }
-  //     });
-  //     const result = await cart.save();
-  //     res.json({ success: true, result });
-  //   } catch (err) {
-  //     res
-  //       .status(400)
-  //       .json({
-  //         success: false,
-  //         message: "error updating cart",
-  //         errorMessage: err.message,
-  //       });
-  //   }
-  // });

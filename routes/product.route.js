@@ -42,7 +42,7 @@ router
       res.json({ success: true, product: savedProduct });
     } catch (err) {
       res
-        .status(500)
+        .status(400)
         .json({
           success: false,
           message: "unable to add products",
