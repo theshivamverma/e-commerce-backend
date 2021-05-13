@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { Product } = require("../models/product.model.js");
 const { extend } = require("lodash");
-const data = require("../data.js");
+/* const data = require("../data.js");
 
 function fillDataIntoDB() {
   data.forEach(async (product) => {
@@ -14,7 +14,7 @@ function fillDataIntoDB() {
       console.log({ err });
     }
   });
-}
+} */
 
 // fillDataIntoDB()
 
