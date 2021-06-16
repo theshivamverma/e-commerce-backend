@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/user.model");
+const { Cart } = require("../models/cart.model.js");
+const { WishList } = require("../models/wishlist.model.js");
+
 require("dotenv").config();
 
 const SECRET = process.env.SECRET;
@@ -38,7 +41,18 @@ async function loginUser(req, res) {
 
 async function signupUser(req, res) {
   try {
+    const NewCart = new Cart();
+    const savedCart = await NewCart.save();
+    const cart = savedCart._id
+
+    const NewWishList = new WishList();
+    const savedWishlist = await NewWishList.save();
+    const wishlist = savedWishlist._id
+
     const { user } = req.body;
+    user.cart = cart;
+    user.wishlist = wishlist;
+    
     const newUser = await User.create(user);
     const salt = await bcrypt.genSalt(10);
     newUser.password = await bcrypt.hash(newUser.password, salt);
